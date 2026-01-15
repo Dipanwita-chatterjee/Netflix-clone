@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Netflix Clone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo-text">NETFLIX</div>
+        <button class="signin-btn">Logout</button>
+    </header>
+
+    <!-- Banner -->
+    <section class="banner" id="movie-banner">
+        <div class="banner-contents">
+            <h1 class="banner-title" id="banner-title"></h1>
+
+            <div class="banner-buttons">
+                <button class="banner-btn" id="banner-play">Play</button>
+                <button class="banner-btn">More Info</button>
+            </div>
+
+            <p class="banner-description" id="banner-description"></p>
+        </div>
+
+        <div class="banner-fadeBottom"></div>
+    </section>
+
+    <!-- Trailer Modal -->
+    <div id="trailer-modal" class="trailer-modal">
+        <div class="trailer-content">
+            <span id="trailer-close">&times;</span>
+            <iframe id="trailer-frame" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Movie Rows -->
+    <section class="movies">
+
+        <h2 class="row-title">Trending Now</h2>
+        <div class="row-container">
+            <button class="scroll-btn left">&#10094;</button>
+            <div class="movie-row" id="trending"></div>
+            <button class="scroll-btn right">&#10095;</button>
+        </div>
+
+        <h2 class="row-title">Top Rated</h2>
+        <div class="row-container">
+            <button class="scroll-btn left">&#10094;</button>
+            <div class="movie-row" id="toprated"></div>
+            <button class="scroll-btn right">&#10095;</button>
+        </div>
+
+        <h2 class="row-title">Netflix Originals</h2>
+        <div class="row-container">
+            <button class="scroll-btn left">&#10094;</button>
+            <div class="movie-row" id="originals"></div>
+            <button class="scroll-btn right">&#10095;</button>
+        </div>
+
+        <h2 class="row-title">Action</h2>
+        <div class="row-container">
+            <button class="scroll-btn left">&#10094;</button>
+            <div class="movie-row" id="action"></div>
+            <button class="scroll-btn right">&#10095;</button>
+        </div>
+
+        <h2 class="row-title">Comedy</h2>
+        <div class="row-container">
+            <button class="scroll-btn left">&#10094;</button>
+            <div class="movie-row" id="comedy"></div>
+            <button class="scroll-btn right">&#10095;</button>
+        </div>
+
+    </section>
+
+    <!-- JavaScript -->
+    <script src="requests.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,13 +1,23 @@
 console.log("script.js loaded");
-const isHomePage = true; // change to false for landing page
-
+const isHomePage = false; // change to false for landing page
+/*
 document.getElementById("marketing-hero").style.display =
     isHomePage ? "none" : "flex";
 
 document.getElementById("movie-banner").style.display =
     isHomePage ? "block" : "none";
 
+*/
+const hero = document.getElementById("marketing-hero");
+const banner = document.getElementById("movie-banner");
 
+if (hero) {
+    hero.style.display = "none";
+}
+
+if (banner) {
+    banner.style.display = "block";
+}
 
 async function fetchMovies(url, rowId) {
     const response = await fetch(url);
