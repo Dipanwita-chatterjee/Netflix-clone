@@ -13,7 +13,18 @@
     <!-- Navbar -->
     <header class="navbar">
         <div class="logo-text">NETFLIX</div>
-        <button class="signin-btn">Logout</button>
+        <input
+  type="text"
+  id="search-input"
+  placeholder="Search movies or TV shows"
+  class="search-input"
+/>
+
+
+        <button class="signin-btn" id="logout-btn">Logout</button>
+
+
+
     </header>
 
     <!-- Banner -->
@@ -80,8 +91,32 @@
 
     </section>
 
-    <!-- JavaScript -->
+    <!-- JavaScript 
     <script src="requests.js"></script>
+    <script type="module" src="auth.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="auth.js"></script>
+<script>
+    auth.onAuthStateChanged(user => {
+        if (!user) {
+            window.location.href = "index.html";
+        }
+    });
+</script>
+
+<script>
+    const logoutBtn = document.getElementById("logout-btn");
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+            auth.signOut().then(() => {
+                window.location.href = "index.html";
+            });
+        });
+    }
+</script>
+
+<script src="requests.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

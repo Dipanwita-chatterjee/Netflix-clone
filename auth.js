@@ -8,19 +8,44 @@ const firebaseConfig = {
   appId: "1:487742594809:web:d9514d466cce8a9920cc28"
 };
 
+
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
-// Email login
-document.getElementById("login-btn").addEventListener("click", () => {
-    const email = document.getElementById("email").value;
+const loginBtn = document.getElementById("login-btn");
+
+// Email + Password (Login OR Auto-Signup)
+loginBtn.addEventListener("click", () => {
+    const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
+
+    if (!email || password.length < 6) {
+        alert("Enter a valid email and password (min 6 chars)");
+        return;
+    }
 
     auth.signInWithEmailAndPassword(email, password)
         .then(() => {
+            // Existing user
             window.location.href = "browse.html";
         })
-        .catch(err => alert(err.message));
+        .catch(error => {
+            // If user doesn't exist → create account
+            if (
+                error.code === "auth/user-not-found" ||
+                error.code === "auth/invalid-login-credentials"
+            ) {
+                auth.createUserWithEmailAndPassword(email, password)
+                    .then(() => {
+                        window.location.href = "browse.html";
+                    })
+                    .catch(err => {
+                        alert(err.message);
+                    });
+            } else {
+                alert(error.message);
+            }
+        });
 });
 
 // Google login
@@ -33,4 +58,3 @@ document.getElementById("google-btn").addEventListener("click", () => {
         })
         .catch(err => alert(err.message));
 });
-

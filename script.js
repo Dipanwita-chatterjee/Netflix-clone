@@ -1,13 +1,6 @@
 console.log("script.js loaded");
 const isHomePage = false; // change to false for landing page
-/*
-document.getElementById("marketing-hero").style.display =
-    isHomePage ? "none" : "flex";
 
-document.getElementById("movie-banner").style.display =
-    isHomePage ? "block" : "none";
-
-*/
 const hero = document.getElementById("marketing-hero");
 const banner = document.getElementById("movie-banner");
 
@@ -185,3 +178,29 @@ const response = await fetch(requests.fetchTrending, { cache: "no-store" });
 loadBanner();
 
 document.addEventListener("DOMContentLoaded", loadBanner);
+
+const searchInput = document.getElementById("search-input");
+
+if (searchInput) {
+  searchInput.addEventListener("keyup", async e => {
+    const query = e.target.value.trim();
+
+    if (query.length < 2) return;
+
+    const response = await fetch(requests.search(query));
+    const data = await response.json();
+
+    const row = document.getElementById("trending");
+    row.innerHTML = "";
+
+    data.results.forEach(item => {
+      if (!item.poster_path) return;
+
+      const img = document.createElement("img");
+      img.src = `https://image.tmdb.org/t/p/w300${item.poster_path}`;
+      img.classList.add("poster");
+
+      row.appendChild(img);
+    });
+  });
+}

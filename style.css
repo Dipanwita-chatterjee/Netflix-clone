@@ -350,3 +350,119 @@ body {
     color: white;
     cursor: pointer;
 }
+/* Auth page */
+.auth-page {
+    background: linear-gradient(
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.65)
+    ),
+    url("assets/images/hero.jpg");
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Login box */
+.auth-box {
+    background: rgba(0, 0, 0, 0.75);
+    padding: 60px 50px;
+    width: 350px;
+    border-radius: 4px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+}
+
+.auth-box h1 {
+    margin-bottom: 25px;
+    font-size: 32px;
+}
+
+/* Inputs */
+.auth-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    background: #333;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.auth-box input:focus {
+    outline: none;
+    background: #444;
+}
+
+/* Buttons */
+.auth-box button {
+    width: 100%;
+    padding: 12px;
+    background: #e50914;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.auth-box button:hover {
+    background: #f6121d;
+}
+
+/* OR text */
+.auth-box p {
+    text-align: center;
+    margin: 20px 0;
+    color: #aaa;
+    font-size: 14px;
+}
+
+/* Google button override */
+#google-btn {
+    background: #fff;
+    color: #000;
+}
+
+#google-btn:hover {
+    background: #e6e6e6;
+}
+
+/* Navbar search input */
+.search-input {
+    background: #141414;             /* Darker than navbar */
+    border: 1px solid #333;          /* Slight border */
+    color: #fff;                      /* Text color */
+    padding: 10px 16px;               /* More comfortable padding */
+    width: 400px;                     /* Wider search bar */
+    border-radius: 20px;              /* Rounded corners for smooth look */
+    outline: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 5px rgba(255,255,255,0.05);
+}
+
+/* Placeholder style */
+.search-input::placeholder {
+    color: #888;
+    font-weight: 500;
+}
+
+/* Focus effect */
+.search-input:focus {
+    border-color: #e50914;            /* Netflix red accent */
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
+    background: #1f1f1f;              /* Slightly lighter on focus */
+}
+
+/* Responsive tweak */
+@media screen and (max-width: 768px) {
+    .search-input {
+        width: 200px;                  /* Smaller on mobile */
+        padding: 8px 12px;
+    }
+}
+
+
