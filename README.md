@@ -14,6 +14,7 @@ This project focuses on frontend architecture, API integration, and responsive U
 - Multiple movie rows (Trending, Top Rated, Originals, Action, Comedy)
 - Horizontal scrolling movie rows
 - Real-time movie data fetched from TMDB API
+- Trailer popup when clicking on a movie poster or banner play button
 - Clean UI inspired by Netflix
 - Responsive layout for different screen sizes
 
@@ -47,6 +48,7 @@ netflix-clone/
 - Movie data is fetched from TMDB using `fetch`
 - Posters are rendered dynamically into horizontal rows
 - A random movie backdrop is selected for the browse banner on each reload
+- Trailer pops up when clicking on a movie poster or banner play button
 - Landing hero and browse banner are separated for proper UX flow
 
 ---

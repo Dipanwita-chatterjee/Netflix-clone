@@ -23,7 +23,12 @@ async function fetchMovies(url, rowId) {
         img.src = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
         img.classList.add("poster");
 
-        row.appendChild(img);
+        img.addEventListener("click", () => {
+    showTrailer(movie.id, movie.media_type || "movie");
+});
+
+row.appendChild(img);
+
     });
 }
 
@@ -84,8 +89,43 @@ fetchMovies(requests.fetchTopRated, "toprated");
 fetchMovies(requests.fetchActionMovies, "action");
 fetchMovies(requests.fetchComedyMovies, "comedy");
 
+async function showTrailer(movieId, mediaType = "movie") {
+    console.log("showTrailer loaded");
+    const response = await fetch(
+        `${BASE_URL}/${mediaType}/${movieId}/videos?api_key=${API_KEY}`
+    );
+    const data = await response.json();
+
+    const trailer = data.results.find(
+        v => v.site === "YouTube" && v.type === "Trailer"
+    );
+
+    if (!trailer) {
+        alert("Trailer not available");
+        return;
+    }
+
+    const modal = document.getElementById("trailer-modal");
+    const iframe = document.getElementById("trailer-frame");
+
+    iframe.src = `https://www.youtube.com/embed/${trailer.key}?autoplay=1`;
+    modal.style.display = "flex";
+
+    document.getElementById("trailer-close").onclick = () => {
+        modal.style.display = "none";
+        iframe.src = "";
+    };
+
+    modal.onclick = e => {
+        if (e.target === modal) {
+            modal.style.display = "none";
+            iframe.src = "";
+        }
+    };
+}
 
 async function loadBanner() {
+    let bannerMovie;
     console.log("loadBanner called");
 
 const response = await fetch(requests.fetchTrending, { cache: "no-store" });
@@ -104,7 +144,7 @@ const response = await fetch(requests.fetchTrending, { cache: "no-store" });
     console.log("Movies with backdrop:", moviesWithBackdrop.length);
 
 
-    const movie =
+    bannerMovie =
         moviesWithBackdrop[
             Math.floor(Math.random() * moviesWithBackdrop.length)
         ];
@@ -114,7 +154,7 @@ const response = await fetch(requests.fetchTrending, { cache: "no-store" });
     const banner = document.querySelector(".banner");
 
     const imageUrl =
-        `${imageBaseUrl}${movie.backdrop_path}`;
+        `${imageBaseUrl}${bannerMovie.backdrop_path}`;
 
     console.log("Banner image:", imageUrl);
 
@@ -122,13 +162,16 @@ const response = await fetch(requests.fetchTrending, { cache: "no-store" });
     banner.style.backgroundImage = `url(${imageUrl})`;
 
     document.getElementById("banner-title").textContent =
-        movie.title || movie.name || "";
+        bannerMovie.title || bannerMovie.name || "";
 
     document.getElementById("banner-description").textContent =
-        movie.overview || "";
-}
+        bannerMovie.overview || "";
+    
+        document.querySelector(".banner-btn").onclick = () => {
+    showTrailer(bannerMovie.id, "movie");
+};
 
-//loadBanner() ;
-//document.querySelector(".banner").style.backgroundImage =
- // 'url("https://image.tmdb.org/t/p/original/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg")';
+}
+loadBanner();
+
 document.addEventListener("DOMContentLoaded", loadBanner);
