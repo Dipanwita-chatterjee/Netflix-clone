@@ -29,7 +29,7 @@ This project focuses on frontend architecture, API integration, and responsive U
 ---
 
 ## 📂 Project Structure
-
+```
 netflix-clone/
 ├── index.html
 ├── style.css
@@ -39,7 +39,7 @@ netflix-clone/
 │ └── images/
 │ └── hero-collage.jpg
 └── README.md
-
+```
 ---
 
 ## ⚙️ How It Works
